@@ -836,8 +836,9 @@
 
       <div class="block-12-title mt-200">Final Design</div>
       <img class="img-28" src="/assets/works/SmartConnect/img-28.png" />
+
+      <div class="back-works" @click="clickBack()">Back to all projects</div>
     </div>
-    <Turnpage class="div-gray margin-6" :next="next"></Turnpage>
 
     <Quicklinks :list="quicklinks"></Quicklinks>
   </div>
@@ -845,170 +846,179 @@
 
 <script>
 import Bus from "@/bus";
-import Turnpage from "@/components/turnpage.vue";
 import Quicklinks from "@/components/quicklinks.vue";
 import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
 
 export default {
   name: "SmartConnect",
   components: {
-    Turnpage,
     Quicklinks,
     Swiper,
-    SwiperSlide,
+    SwiperSlide
   },
   directives: {
-    swiper: directive,
+    swiper: directive
   },
   data: () => {
     return {
       previous: null,
       next: {
         title: "PET TRACKER",
-        name: "FurGo",
+        name: "FurGo"
       },
       handler: null,
       swiperOptions: {
         pagination: {
-          el: ".swiper-pagination",
+          el: ".swiper-pagination"
         },
         navigation: {
           prevEl: ".block-swiper-arrow-l",
-          nextEl: ".block-swiper-arrow-r",
-        },
+          nextEl: ".block-swiper-arrow-r"
+        }
       },
       quicklinks: [
         {
           title: "Overview",
-          id: "0",
+          id: "0"
         },
         {
           title: "Highlights",
-          id: "1",
+          id: "1"
         },
         {
           title: "Research",
-          id: "2",
+          id: "2"
         },
         {
           title: "Synthesis",
-          id: "3",
+          id: "3"
         },
         {
           title: "User Testings",
-          id: "4",
+          id: "4"
         },
         {
           title: "Design Iterations",
-          id: "6",
+          id: "6"
         },
         {
           title: "Hi-Fi",
-          id: "5",
-        },
+          id: "5"
+        }
       ],
       solutions: [
         {
           img: "/assets/works/SmartConnect/1.gif",
           title: "Customizable Data Table ",
-          desc: "Users from 5 different user groups can now select table header items for searching and filtering in device list and prioritize items based on their daily job needs.",
+          desc:
+            "Users from 5 different user groups can now select table header items for searching and filtering in device list and prioritize items based on their daily job needs."
         },
         {
           img: "/assets/works/SmartConnect/2.gif",
           title: "Onboarding for Guidance",
-          desc: "Guide first-time users through some critical aspects of the software. Encourage and guide users to configure some important settings upon adding a new device.",
+          desc:
+            "Guide first-time users through some critical aspects of the software. Encourage and guide users to configure some important settings upon adding a new device."
         },
         {
           img: "/assets/works/SmartConnect/3.gif",
           title: "Task Work Flow Improving Efficiency ",
-          desc: "Help users focus on one task at a time by removing distractions and building a user flow for layers of settings. Eliminate unused settings from views and only show the settings upon enabling. ",
+          desc:
+            "Help users focus on one task at a time by removing distractions and building a user flow for layers of settings. Eliminate unused settings from views and only show the settings upon enabling. "
         },
         {
           img: "/assets/works/SmartConnect/4.gif",
           title: "Efficient “Validate/Apply” User Flow",
-          desc: "Make validation result to a retrievable and collapsable pop-up window and improve work efficiency with validate-apply-reconfigurate user flow and linkage.",
+          desc:
+            "Make validation result to a retrievable and collapsable pop-up window and improve work efficiency with validate-apply-reconfigurate user flow and linkage."
         },
         {
           img: "/assets/works/SmartConnect/5.gif",
           title: "Quick Multi-device Comparison",
-          desc: "Engineers often need to cross check settings on different devices",
-        },
+          desc:
+            "Engineers often need to cross check settings on different devices"
+        }
       ],
       participants: [
         {
           name: "3 Quality Assuarance",
-          avatar: "/assets/works/SmartConnect/img-11.png",
+          avatar: "/assets/works/SmartConnect/img-11.png"
         },
         { name: "2 PSS", avatar: "/assets/works/SmartConnect/img-12.png" },
         {
           name: "1 Developer",
-          avatar: "/assets/works/SmartConnect/img-13.png",
+          avatar: "/assets/works/SmartConnect/img-13.png"
         },
         {
           name: "2 Product Manager",
-          avatar: "/assets/works/SmartConnect/img-14.png",
+          avatar: "/assets/works/SmartConnect/img-14.png"
         },
         {
           name: "2 Design Engineers",
-          avatar: "/assets/works/SmartConnect/img-15.png",
-        },
+          avatar: "/assets/works/SmartConnect/img-15.png"
+        }
       ],
       explorations: [
         {
           img: "/assets/works/SmartConnect/img-25.png",
-          desc: "Professional take",
+          desc: "Professional take"
         },
         {
           img: "/assets/works/SmartConnect/img-26.png",
-          desc: "Bold take",
+          desc: "Bold take"
         },
         {
           img: "/assets/works/SmartConnect/img-27.png",
-          desc: "Combination iteration",
-        },
+          desc: "Combination iteration"
+        }
       ],
       hoverIndex: -1,
       highlights: [
         {
           normal: "/assets/works/SmartConnect/img-29-0.png",
           hover: "/assets/works/SmartConnect/img-29-1.png",
-          desc: "While preserving cybersecurity, we incorporated device management so that users only log in once to manage all on homepage, which enables comparision function.",
+          desc:
+            "While preserving cybersecurity, we incorporated device management so that users only log in once to manage all on homepage, which enables comparision function."
         },
         null,
         {
           normal: "/assets/works/SmartConnect/img-30-0.png",
           hover: "/assets/works/SmartConnect/img-30-1.GIF",
-          desc: "Added data table filtering and customization funtion for different user groups, and additional compare function for cross devices monitoring.",
+          desc:
+            "Added data table filtering and customization funtion for different user groups, and additional compare function for cross devices monitoring."
         },
         {
           normal: "/assets/works/SmartConnect/img-31-0.png",
           hover: "/assets/works/SmartConnect/img-31-1.png",
-          desc: "Create a user flow to notify users of the validation result. Unsuccessful result window guides users directly to error input locations.",
+          desc:
+            "Create a user flow to notify users of the validation result. Unsuccessful result window guides users directly to error input locations."
         },
         null,
         {
           normal: "/assets/works/SmartConnect/img-32-0.png",
           hover: "/assets/works/SmartConnect/img-32-1.GIF",
-          desc: "Improve the UI and user flow in making pop-up window retrievable and collapsable for easier configuration.",
+          desc:
+            "Improve the UI and user flow in making pop-up window retrievable and collapsable for easier configuration."
         },
         {
           normal: "/assets/works/SmartConnect/img-33-0.png",
           hover: "/assets/works/SmartConnect/img-33-1.png",
-          desc: "Collapse to hide unused settings in default and reorganize settings into better groupings.",
+          desc:
+            "Collapse to hide unused settings in default and reorganize settings into better groupings."
         },
         null,
         {
           normal: "/assets/works/SmartConnect/img-34-0.png",
           hover: "/assets/works/SmartConnect/img-34-1.GIF",
-          desc: "Create a work flow for the unused settings by reorganizing them into a more modular based and task based configuration experience.",
-        },
-      ],
+          desc:
+            "Create a work flow for the unused settings by reorganizing them into a more modular based and task based configuration experience."
+        }
+      ]
     };
   },
   computed: {
     swiper() {
       return this.$refs.mySwiper.$swiper;
-    },
+    }
   },
   mounted() {
     console.log("Current Swiper instance object", this.swiper);
@@ -1030,7 +1040,10 @@ export default {
     onOut() {
       this.hoverIndex = -1;
     },
-  },
+    clickBack() {
+      window.location.href = "https://sara-bai.webflow.io/#works";
+    }
+  }
 };
 </script>
 
@@ -1273,6 +1286,7 @@ $px: 243px;
 
 .block-3 {
   padding: 105px 0 150px 0;
+
   &-list {
     width: 100%;
     box-sizing: border-box;
@@ -1554,6 +1568,7 @@ $px: 243px;
 
 .block-8 {
   margin: 85px 0 128px 0;
+
   &-title {
     align-self: center;
     font-family: Rubik, sans-serif;
@@ -1606,6 +1621,7 @@ $px: 243px;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+
   &-title {
     font-family: Rubik, sans-serif;
     font-style: normal;
@@ -2374,5 +2390,21 @@ $px: 243px;
   position: relative;
   width: 954px;
   height: auto;
+}
+
+.back-works {
+  margin: 150px auto -100px auto;
+  width: 280px;
+  height: 72px;
+  border-radius: 99px;
+  text-align: center;
+  line-height: 72px;
+  font-family: Rubik;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  background-color: #f6f0e5;
+  border: 1px solid #534a44;
+  cursor: pointer;
 }
 </style>

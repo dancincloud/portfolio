@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="nav"> -->
   <div
     class="nav-fixed"
     :class="showNav ? 'showNav' : 'hideNav'"
@@ -8,11 +7,10 @@
     <button class="icon" @click="clickHome()"></button>
     <div class="links">
       <button
-        class="links-item"
+        class="links-item :hover"
         v-for="(item, i) in links"
         :key="i"
-        :class="active == item.name ? 'links-item--active' : ''"
-        @click="clickItem(item.path)"
+        @click="clickItem(item)"
       >
         {{ item.name }}
       </button>
@@ -36,7 +34,7 @@ export default {
       links: [
         {
           name: "Works",
-          path: "/Works"
+          link: "https://sara-bai.webflow.io/#works"
         },
         // {
         //   name: "Sides",
@@ -44,7 +42,8 @@ export default {
         // },
         {
           name: "Resume",
-          path: "/Resume"
+          link:
+            "https://drive.google.com/file/d/1XdsVh4PBOmFHXlIxaiYL0g5L1n9Ln3hy/view"
         }
       ],
       offset: 0,
@@ -81,10 +80,17 @@ export default {
       }
     },
     clickHome() {
-      this.$router.push("/");
+      window.location.href = "https://sara-bai.webflow.io";
     },
-    clickItem(name) {
-      this.$router.push(name);
+    clickItem(item) {
+      if (item.path) {
+        this.$router.push(item.name);
+        return;
+      }
+
+      if (item.link) {
+        window.location.href = item.link;
+      }
     },
     scrollTop() {
       return (
@@ -99,74 +105,61 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.nav {
-  position: relative;
-  width: 100%;
-  height: 72px;
-}
-
 .nav-fixed {
   z-index: 999;
   // position: fixed;
   position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 72px;
+  top: 10px;
+  margin: 0 auto 0 auto;
+  padding: 4px;
   box-sizing: border-box;
-  padding: 0 64px;
-  // background-color: #ffffff;
-  background: hsla(0, 0%, 100%, 0.5);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  width: 290px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba($color: #ffffff, $alpha: 0.6);
+  box-shadow: 2px 2px 8px 0px #0000001a;
+  border-radius: 99px;
 
   .icon {
     position: relative;
-    width: 38px;
-    height: 38px;
+    width: 45px;
+    height: 40px;
     background-image: url("/assets/icons/logo.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    // left: 64px;
-    // border: 2px solid #826feb;
-
-    // &-text {
-    //   position: absolute;
-    //   left: 6px;
-    //   top: 10px;
-    //   font-family: SF Pro Text;
-    //   font-style: normal;
-    //   font-weight: bold;
-    //   font-size: 20px;
-    //   line-height: 24px;
-    //   color: #826feb;
-    // }
   }
 
   .links {
+    position: relative;
+    margin: 0 0 0 60px;
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
     &-item {
-      width: 97px;
-      color: #7e7e7e;
+      margin: 4px;
+      padding: 8px 12px;
+      font-family: Rubik;
       font-size: 16px;
-      font-family: "Nunito", sans-serif;
+      font-weight: 400;
+      text-align: center;
+      border-radius: 99px;
 
-      &--active {
-        color: #826feb;
-        font-weight: bold;
+      :hover {
+        background-color: rgba($color: #d5cfd8, $alpha: 0.8);
       }
     }
   }
+}
+
+button:hover {
+  animation: none;
+  background-color: rgba($color: #d5cfd8, $alpha: 0.8);
 }
 
 .showNav {
